@@ -17,13 +17,16 @@ const app = express();
 // ✅ Middleware
 app.use(cors({
     origin: [
-        "http://localhost:5173", // Your local Vite dev server
-        "https://standup-reporter.vercel.app", // Replace with your ACTUAL Vercel URL
-        /\.vercel\.app$/ // This regex allows ALL your Vercel preview links
+        "http://localhost:5173",
+        "http://localhost:3000", // Covering CRA default port too
+        "https://standup-reporter.vercel.app",
+        "https://standup-reporter.vercel.app/", // Added trailing slash
+        /\.vercel\.app$/ 
     ],
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 }));
 
 app.use(express.json());
