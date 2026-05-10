@@ -16,14 +16,14 @@ const app = express();
 
 // ✅ Middleware
 app.use(cors({
-    origin: function(origin, callback) {
-        if (!origin || origin.startsWith('http://localhost')) {
-            callback(null, true);
-        } else {
-            callback(null, true); // 🔥 allow all for now (fix later)
-        }
-    },
-    credentials: true
+    origin: [
+        "http://localhost:5173", // Your local Vite dev server
+        "https://standup-reporter.vercel.app", // Replace with your ACTUAL Vercel URL
+        /\.vercel\.app$/ // This regex allows ALL your Vercel preview links
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(express.json());
