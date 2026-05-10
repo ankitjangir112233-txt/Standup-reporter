@@ -18,9 +18,9 @@ const Submit = () => {
         const checkSubmission = async () => {
             try {
                 const res = await axios.get(
-                    'http://localhost:3000/api/updates/mine',
+                    `${process.env.REACT_APP_API_URL}/api/updates/mine`, // Use the environment variable
                     { headers: { Authorization: `Bearer ${token}` } }
-                );
+                );  
                 if (res.data.submitted) {
                     setAlreadySubmitted(true);
                 }
@@ -38,7 +38,7 @@ const Submit = () => {
 
         try {
             await axios.post(
-                'http://localhost:3000/api/updates',
+                `${process.env.REACT_APP_API_URL}/api/updates`, // Use the environment variable
                 { completedWork, objectives, blockers },
                 {
                     headers: {
