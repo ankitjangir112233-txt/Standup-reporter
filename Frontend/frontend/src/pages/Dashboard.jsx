@@ -31,17 +31,17 @@ const Dashboard = () => {
             const headers = { Authorization: `Bearer ${token}` };
 
             const updatesRes = await axios.get(
-                'http://localhost:3000/api/updates',
+                `${process.env.REACT_APP_API_URL}/api/updates`, // FIX HERE
                 { headers }
             );
 
             const usersRes = await axios.get(
-                'http://localhost:3000/api/updates/users',
+                `${process.env.REACT_APP_API_URL}/api/updates/users`, // FIX HERE
                 { headers }
             );
 
             const todayRes = await axios.get(
-                'http://localhost:3000/api/updates/today',
+                `${process.env.REACT_APP_API_URL}/api/updates/today`, // FIX HERE
                 { headers }
             );
 
@@ -83,7 +83,7 @@ const Dashboard = () => {
     const handleSendSummary = async () => {
         try {
             await axios.post(
-                'http://localhost:3000/api/updates/send-summary',
+                `${process.env.REACT_APP_API_URL}/api/updates/send-summary`, // FIX HERE
                 {},
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -98,7 +98,7 @@ const Dashboard = () => {
     const handleSendReminders = async () => {
         try {
             const res = await axios.post(
-                'http://localhost:3000/api/updates/send-reminders',
+                `${process.env.REACT_APP_API_URL}/api/updates/send-reminders`, // FIX HERE
                 {},
                 { headers: { Authorization: `Bearer ${token}` } }
             );
